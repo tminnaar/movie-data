@@ -1,0 +1,87 @@
+* {
+	color: white;
+	font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+	background-color: #862e24;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 800px;
+	padding: 200px;
+	gap: 100px;
+}
+
+.info-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	top: 50%;
+	left: 20%;
+	width: 40vw;
+	min-height: 300px;
+	padding: 30px;
+}
+
+.film-title {
+	margin: 1px;
+	padding: 20px;
+	text-align: center;
+	font-size: 60px;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.info-parent {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+.plot {
+	top: auto;
+	left: auto;
+	display: block;
+	width: 25vw;
+	font-size: 30px;
+	padding: 30px;
+}
+
+.cast {
+	font-size: 20px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.runtime-year-rating {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	gap: 100px;
+	font-size: 25px;
+	font-weight: 600;
+}
+
+.poster-slider {
+	display: flex;
+	height: 600px;
+	margin: 0;
+	align-items: center;
+	justify-items: center;
+	top: 50%;
+	left: 80%;
+}
+
+.poster-image {
+	width: 400px;
+}
+
+.notbold {
+	font-weight: normal;
+	font-size: 20px;
+}
