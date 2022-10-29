@@ -35,18 +35,28 @@ let movieData = {
 
 const cardContainer = document.querySelector(".cards");
 const yearSort = document.querySelector(".year-sort");
+
+const title = document.getElementById("film-title");
+const cast = document.getElementById("cast");
+const plot = document.getElementById("plot");
+const year = document.getElementById("year");
+const runtime = document.getElementById("runtime");
+const rating = document.getElementById("rating");
+// const spacer = document.querySelector("spacer");
+
 let focusedIndex = 0;
 
-const ordered = orderKeys(movieData, false);
+let ordered = orderKeys(movieData, false);
+onFocusChange();
 // function that takes key at each object, converts to a sroted array and returns a new object called ordered
 //unordered is an object, reversed is a boolean
 function orderKeys(unordered, reversed) {
-	let ordered = Object.keys(unordered).sort();
+	let sortedArray = Object.keys(unordered).sort();
 	if (reversed) {
-		ordered = ordered.reverse();
+		sortedArray = sortedArray.reverse();
 	}
 
-	return ordered.reduce((obj, key) => {
+	return sortedArray.reduce((obj, key) => {
 		obj[key] = unordered[key];
 		return obj;
 	}, {});
@@ -76,22 +86,33 @@ function sortClick() {
 		card.remove();
 	});
 
-	const newOrder = orderKeys(movieData, ascending);
-	Object.keys(newOrder).forEach((key) => {
-		addCard(newOrder[key].src);
+	ordered = orderKeys(movieData, ascending);
+	onFocusChange();
+	Object.keys(ordered).forEach((key) => {
+		addCard(ordered[key].src);
 	});
 }
 
 function previousCard() {
 	if (focusedIndex > 0) {
 		focusedIndex -= 1;
-		cardContainer.scrollLeft = 500 * focusedIndex;
+		onFocusChange();
 	}
 }
 
 function nextCard() {
 	if (focusedIndex < Object.keys(movieData).length - 1) {
 		focusedIndex += 1;
-		cardContainer.scrollLeft = 500 * focusedIndex;
+		onFocusChange();
 	}
+}
+
+function onFocusChange() {
+	cardContainer.scrollLeft = 500 * focusedIndex;
+	title.textContent = Object.keys(ordered)[focusedIndex];
+	plot.textContent = Object.values(ordered)[focusedIndex].plot;
+	cast.textContent = Object.values(ordered)[focusedIndex].cast;
+	runtime.textContent = Object.values(ordered)[focusedIndex].runtime;
+	year.textContent = Object.values(ordered)[focusedIndex].year;
+	rating.textContent = Object.values(ordered)[focusedIndex].rating;
 }
