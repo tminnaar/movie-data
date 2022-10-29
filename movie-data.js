@@ -35,6 +35,7 @@ let movieData = {
 
 const cardContainer = document.querySelector(".cards");
 const yearSort = document.querySelector(".year-sort");
+let focusedIndex = 0;
 
 const ordered = orderKeys(movieData, false);
 // function that takes key at each object, converts to a sroted array and returns a new object called ordered
@@ -81,8 +82,16 @@ function sortClick() {
 	});
 }
 
-// inputArray.forEach((input, index) => {
-// 	input.addEventListener("change", () => {
-// 		cardContainer.scrollLeft = 500 * index;
-// 	});
-// });
+function previousCard() {
+	if (focusedIndex > 0) {
+		focusedIndex -= 1;
+		cardContainer.scrollLeft = 500 * focusedIndex;
+	}
+}
+
+function nextCard() {
+	if (focusedIndex < Object.keys(movieData).length - 1) {
+		focusedIndex += 1;
+		cardContainer.scrollLeft = 500 * focusedIndex;
+	}
+}

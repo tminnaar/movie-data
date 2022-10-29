@@ -63,6 +63,11 @@ body {
 	font-weight: 600;
 }
 
+.notbold {
+	font-weight: normal;
+	font-size: 20px;
+}
+
 .poster-slider {
 	width: 730px;
 	overflow: hidden;
@@ -85,6 +90,8 @@ body {
 	width: 100%;
 	gap: 100px;
 	scrollbar-width: none;
+	overflow-x: scroll;
+	scroll-behavior: smooth;
 }
 
 .card img {
@@ -92,9 +99,15 @@ body {
 	width: 400px;
 }
 
-.notbold {
-	font-weight: normal;
-	font-size: 20px;
+.buttons {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 30px;
+	width: 410px;
+}
+
+.buttons img {
+	cursor: pointer;
 }
 
 ::-webkit-scrollbar {
