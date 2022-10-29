@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
-    <title>Movie Data</title>
-</head>
-<body>
-    <div class="background-image"></div>
-    <div class="container">
-    <div class="info-box">
-        <h3 class="film-title">The Darjeeling Limited</h3>
-        <div class="info-parent">
-        <div class="cast">Jason Schwartzman, Owen Wilson, Adrien Brody</div>
-        <div class="plot">A year after their father's funeral, three brothers travel across India by train in an attempt to bond with each other.</div>
-    </div>
-    <div class="runtime-year-rating">
-        <div class="runtime">151<span class='notbold'>MINS</span></div>
-        <div class="year">2007</div>
-        <div class="rating">7.2<span class='notbold'>/10</span></div>
-    </div>
-    </div>
-    <div class="poster-slider">
-        <div class="poster1"><img class="poster-image" src="images/the-darjeeling-limited.jpg"></div>
-    </div>
-</body>
-<footer></footer>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet" />
+		<script src="movie-data.js" defer></script>
+		<title>Movie Data</title>
+	</head>
+	<body>
+		<div class="background-image"></div>
+		<div class="container">
+			<div class="info-box">
+				<h3 class="film-title">The Darjeeling Limited</h3>
+				<div class="info-parent">
+					<div class="cast">Jason Schwartzman, Owen Wilson, Adrien Brody</div>
+					<div class="plot">
+						A year after their father's funeral, three brothers travel across India by train in an attempt to bond with
+						each other.
+					</div>
+				</div>
+				<div class="runtime-year-rating">
+					<div class="runtime">151<span class="notbold">MINS</span></div>
+					<div class="year">2007</div>
+					<div class="rating">7.2<span class="notbold">/10</span></div>
+				</div>
+			</div>
+			<div class="poster-slider">
+				<div class="year-sort" onclick="sortClick()"></div>
+				<div class="cards"></div>
+			</div>
+		</div>
+	</body>
+	<footer></footer>
 </html>
