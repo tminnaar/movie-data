@@ -76,6 +76,7 @@ function addCard(imageSource) {
 Object.keys(ordered).forEach((key) => {
 	addCard(ordered[key].src);
 });
+appendSpacer(cardContainer);
 
 function sortClick() {
 	yearSort.toggleAttribute("ascending");
@@ -86,16 +87,23 @@ function sortClick() {
 		card.remove();
 	});
 
+	document.querySelector(".spacer").remove();
+
 	ordered = orderKeys(movieData, ascending);
-	onFocusChange();
 	Object.keys(ordered).forEach((key) => {
 		addCard(ordered[key].src);
 	});
+
+	appendSpacer(cardContainer);
+
+	focusedIndex = 0;
+	onFocusChange();
 }
 
 function previousCard() {
 	if (focusedIndex > 0) {
 		focusedIndex -= 1;
+
 		onFocusChange();
 	}
 }
@@ -103,8 +111,16 @@ function previousCard() {
 function nextCard() {
 	if (focusedIndex < Object.keys(movieData).length - 1) {
 		focusedIndex += 1;
+
 		onFocusChange();
 	}
+}
+
+function appendSpacer(container) {
+	const spacerDiv = document.createElement("div");
+	spacerDiv.classList.add("spacer");
+
+	container.appendChild(spacerDiv);
 }
 
 function onFocusChange() {

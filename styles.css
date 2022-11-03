@@ -21,6 +21,7 @@ body {
 	flex-direction: column;
 	align-items: center;
 	width: 40vw;
+	height: 264px;
 	padding: 30px;
 }
 
@@ -123,6 +124,7 @@ body {
 	padding-right: 501px;
 }
 
-/* .spacer {
+.spacer {
 	width: 700px;
-} */
+	flex-shrink: 0;
+}
