@@ -15,24 +15,27 @@
 		<div class="background-image"></div>
 		<div class="container">
 			<div class="info-box">
-				<h3 id="film-title">The Darjeeling Limited</h3>
+				<h3 id="film-title"></h3>
 				<div class="info-parent">
-					<div id="cast">Jason Schwartzman, Owen Wilson, Adrien Brody</div>
+					<div id="cast"></div>
 					<div id="plot">
-						A year after their father's funeral, three brothers travel across India by train in an attempt to bond with
-						each other.
 					</div>
 				</div>
 				<div class="runtime-year-rating">
-				<div class="info-row"><div id="runtime">151</div><span class="notbold">MINS</span></div>
-					<div id="year">2007</div>
-				<div class="info-row"><div id="rating">7.2</div><span class="notbold">/10</span></div>
+				<div class="info-row"><div id="runtime"></div><span class="notbold">MINS</span></div>
+					<div id="year"></div>
+				<div class="info-row"><div id="rating"></div><span class="notbold">/10</span></div>
+				</div>
+				<div id="review-container">
+					<form action="#" data-mode="display" id="reviewForm" onsubmit="javascript:toggleReview(this); return false">
+						<p id="reviewText"></p>
+						<input type="submit" id="reviewButton" value="Add Review" />
+					</form>
 				</div>
 			</div>
 			<div class="poster-slider">
 				<div class="year-sort" onclick="sortClick()"></div>
 				<div class="cards">
-					<!-- <div class="spacer"></div> -->
 				</div>
 				<div class="buttons">
 					<img src="images/prev-button.png" id="previous" onclick="previousCard()"></img>

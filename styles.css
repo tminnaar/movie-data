@@ -4,7 +4,7 @@
 }
 
 body {
-	background-color: #862e24;
+	background-color: #ec2027;
 }
 
 .container {
@@ -69,6 +69,11 @@ body {
 	flex-direction: row;
 }
 
+textarea {
+	font-size: 30px;
+	color: black;
+}
+
 .notbold {
 	font-weight: normal;
 	font-size: 20px;
@@ -82,13 +87,15 @@ body {
 .year-sort {
 	height: 60px;
 	width: 60px;
-	background-image: url("ascending.svg");
+	background-image: url("images/ascending.png");
+	filter: invert(1);
 	background-repeat: no-repeat;
 	background-size: 60px 60px;
 }
 
 .year-sort[ascending] {
-	background-image: url("descending.svg");
+	background-image: url("images/descending.png");
+	filter: invert(1);
 }
 
 .cards {
@@ -109,7 +116,8 @@ body {
 	display: flex;
 	justify-content: space-between;
 	padding-top: 30px;
-	width: 410px;
+	width: 730px;
+	filter: invert(1);
 }
 
 .buttons img {

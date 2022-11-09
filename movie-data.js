@@ -6,6 +6,7 @@ let movieData = {
 		rating: 7.2,
 		year: 2007,
 		src: "images/the-darjeeling-limited.jpg",
+		review: "",
 	},
 	"The Royal Tenenbaums": {
 		plot: "The eccentric members of a dysfunctional family reluctantly gather under the same roof for various reasons",
@@ -14,6 +15,7 @@ let movieData = {
 		cast: ["Gene Hackman", "Gwnyeth Paltrow", "Anjelica Huston"],
 		runtime: 170,
 		src: "images/the-royal-tenenbaums.jpg",
+		review: "",
 	},
 	"Fantastic Mr. Fox": {
 		year: 2009,
@@ -22,6 +24,7 @@ let movieData = {
 		runtime: 147,
 		rating: 7.9,
 		src: "images/fantastic-mr-fox.jpg",
+		review: "",
 	},
 	"The Grand Budapest Hotel": {
 		rating: 8.1,
@@ -30,6 +33,7 @@ let movieData = {
 		plot: "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel's glorious years under an exceptional concierge.",
 		cast: ["Ralph Fiennes", "F. Murray Abraham", "Mathieu Amalric"],
 		src: "images/the-grand-budapest-hotel.jpg",
+		review: "",
 	},
 };
 
@@ -42,7 +46,6 @@ const plot = document.getElementById("plot");
 const year = document.getElementById("year");
 const runtime = document.getElementById("runtime");
 const rating = document.getElementById("rating");
-// const spacer = document.querySelector("spacer");
 
 let focusedIndex = 0;
 
@@ -79,6 +82,9 @@ Object.keys(ordered).forEach((key) => {
 appendSpacer(cardContainer);
 
 function sortClick() {
+	if (document.getElementById("reviewForm").dataset.mode === "edit" && !discardChanges()) {
+		return false;
+	}
 	yearSort.toggleAttribute("ascending");
 	const ascending = yearSort.getAttribute("ascending") !== null;
 
@@ -100,7 +106,27 @@ function sortClick() {
 	onFocusChange();
 }
 
+function discardChanges() {
+	const focusedMovie = Object.keys(ordered)[focusedIndex];
+	const form = document.getElementById("reviewForm");
+
+	if (window.confirm("Do you want to discard your changes?")) {
+		const reviewInput = document.getElementById("reviewInput");
+		reviewInput.value = movieData[focusedMovie].review;
+
+		toggleReview(form);
+
+		return true;
+	} else {
+		return false;
+	}
+}
+
 function previousCard() {
+	if (document.getElementById("reviewForm").dataset.mode === "edit" && !discardChanges()) {
+		return false;
+	}
+
 	if (focusedIndex > 0) {
 		focusedIndex -= 1;
 
@@ -109,6 +135,10 @@ function previousCard() {
 }
 
 function nextCard() {
+	if (document.getElementById("reviewForm").dataset.mode === "edit" && !discardChanges()) {
+		return false;
+	}
+
 	if (focusedIndex < Object.keys(movieData).length - 1) {
 		focusedIndex += 1;
 
@@ -123,7 +153,49 @@ function appendSpacer(container) {
 	container.appendChild(spacerDiv);
 }
 
+function toggleReview(form) {
+	const focusedMovie = Object.keys(ordered)[focusedIndex];
+	const button = document.getElementById("reviewButton");
+
+	if (form.dataset.mode === "display") {
+		const reviewInput = document.createElement("textarea");
+		reviewInput.setAttribute("id", "reviewInput");
+		reviewInput.value = movieData[focusedMovie].review;
+
+		reviewInput.setAttribute("maxlength", "200");
+
+		document.getElementById("reviewText").remove();
+
+		form.insertBefore(reviewInput, button);
+
+		form.dataset.mode = "edit";
+		button.value = "Submit";
+	} else {
+		const reviewInput = document.getElementById("reviewInput");
+		movieData[focusedMovie].review = reviewInput.value;
+
+		reviewInput.remove();
+
+		const reviewText = document.createElement("p");
+		reviewText.setAttribute("id", "reviewText");
+		reviewText.textContent = movieData[focusedMovie].review;
+
+		form.insertBefore(reviewText, button);
+
+		form.dataset.mode = "display";
+
+		if (movieData[focusedMovie].review === "") {
+			button.value = "Add Review";
+		} else {
+			button.value = "Edit";
+		}
+	}
+	console.log(document.getElementById("reviewInput"));
+}
+
 function onFocusChange() {
+	const reviewText = document.getElementById("reviewText");
+
 	cardContainer.scrollLeft = 500 * focusedIndex;
 	title.textContent = Object.keys(ordered)[focusedIndex];
 	plot.textContent = Object.values(ordered)[focusedIndex].plot;
@@ -131,4 +203,6 @@ function onFocusChange() {
 	runtime.textContent = Object.values(ordered)[focusedIndex].runtime;
 	year.textContent = Object.values(ordered)[focusedIndex].year;
 	rating.textContent = Object.values(ordered)[focusedIndex].rating;
+
+	reviewText.textContent = Object.values(ordered)[focusedIndex].review;
 }
