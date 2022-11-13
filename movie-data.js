@@ -7,6 +7,7 @@ let movieData = {
 		year: 2007,
 		src: "images/the-darjeeling-limited.jpg",
 		review: "",
+		bgColor: "#883025",
 	},
 	"The Royal Tenenbaums": {
 		plot: "The eccentric members of a dysfunctional family reluctantly gather under the same roof for various reasons",
@@ -16,6 +17,7 @@ let movieData = {
 		runtime: 170,
 		src: "images/the-royal-tenenbaums.jpg",
 		review: "",
+		bgColor: "#d6191f",
 	},
 	"Fantastic Mr. Fox": {
 		year: 2009,
@@ -24,7 +26,9 @@ let movieData = {
 		runtime: 147,
 		rating: 7.9,
 		src: "images/fantastic-mr-fox.jpg",
-		review: "",
+		review:
+			"Fantastic Mr. Fox is a delightfully funny feast for the eyes with multi-generational appeal -- and it shows Wes Anderson has a knack for animation.",
+		bgColor: "#ec2027",
 	},
 	"The Grand Budapest Hotel": {
 		rating: 8.1,
@@ -34,11 +38,12 @@ let movieData = {
 		cast: ["Ralph Fiennes", "F. Murray Abraham", "Mathieu Amalric"],
 		src: "images/the-grand-budapest-hotel.jpg",
 		review: "",
+		bgColor: "#524557",
 	},
 };
 
 const cardContainer = document.querySelector(".cards");
-const yearSort = document.querySelector(".year-sort");
+const yearSort = document.querySelector(".year-sort-button");
 
 const title = document.getElementById("film-title");
 const cast = document.getElementById("cast");
@@ -46,6 +51,8 @@ const plot = document.getElementById("plot");
 const year = document.getElementById("year");
 const runtime = document.getElementById("runtime");
 const rating = document.getElementById("rating");
+const reviewText = document.getElementById("reviewText");
+const body = document.getElementById("body");
 
 let focusedIndex = 0;
 
@@ -81,6 +88,38 @@ Object.keys(ordered).forEach((key) => {
 });
 appendSpacer(cardContainer);
 
+function toggleNavVisibility() {
+	const nextButton = document.getElementById("next");
+	const prevButton = document.getElementById("previous");
+
+	if (focusedIndex === Object.keys(movieData).length - 1) {
+		nextButton.style.visibility = "hidden";
+	} else {
+		nextButton.style.visibility = "visible";
+	}
+	if (focusedIndex === 0) {
+		prevButton.style.visibility = "hidden";
+	} else {
+		prevButton.style.visibility = "visible";
+	}
+}
+
+function discardChanges() {
+	const focusedMovie = Object.keys(ordered)[focusedIndex];
+	const form = document.getElementById("reviewForm");
+
+	if (window.confirm("Do you want to discard your changes?")) {
+		const reviewInput = document.getElementById("reviewInput");
+		reviewInput.value = movieData[focusedMovie].review;
+
+		toggleReview(form);
+
+		return true;
+	} else {
+		return false;
+	}
+}
+
 function sortClick() {
 	if (document.getElementById("reviewForm").dataset.mode === "edit" && !discardChanges()) {
 		return false;
@@ -104,22 +143,7 @@ function sortClick() {
 
 	focusedIndex = 0;
 	onFocusChange();
-}
-
-function discardChanges() {
-	const focusedMovie = Object.keys(ordered)[focusedIndex];
-	const form = document.getElementById("reviewForm");
-
-	if (window.confirm("Do you want to discard your changes?")) {
-		const reviewInput = document.getElementById("reviewInput");
-		reviewInput.value = movieData[focusedMovie].review;
-
-		toggleReview(form);
-
-		return true;
-	} else {
-		return false;
-	}
+	toggleNavVisibility();
 }
 
 function previousCard() {
@@ -132,6 +156,7 @@ function previousCard() {
 
 		onFocusChange();
 	}
+	toggleNavVisibility();
 }
 
 function nextCard() {
@@ -144,6 +169,8 @@ function nextCard() {
 
 		onFocusChange();
 	}
+
+	toggleNavVisibility();
 }
 
 function appendSpacer(container) {
@@ -194,15 +221,13 @@ function toggleReview(form) {
 }
 
 function onFocusChange() {
-	const reviewText = document.getElementById("reviewText");
-
 	cardContainer.scrollLeft = 500 * focusedIndex;
 	title.textContent = Object.keys(ordered)[focusedIndex];
 	plot.textContent = Object.values(ordered)[focusedIndex].plot;
-	cast.textContent = Object.values(ordered)[focusedIndex].cast;
+	cast.textContent = Object.values(ordered)[focusedIndex].cast.join(", ");
 	runtime.textContent = Object.values(ordered)[focusedIndex].runtime;
 	year.textContent = Object.values(ordered)[focusedIndex].year;
 	rating.textContent = Object.values(ordered)[focusedIndex].rating;
-
 	reviewText.textContent = Object.values(ordered)[focusedIndex].review;
+	body.style.backgroundColor = Object.values(ordered)[focusedIndex].bgColor;
 }

@@ -11,7 +11,7 @@
 		<script src="movie-data.js" defer></script>
 		<title>Movie Data</title>
 	</head>
-	<body>
+	<body id="body">
 		<div class="background-image"></div>
 		<div class="container">
 			<div class="info-box">
@@ -34,12 +34,14 @@
 				</div>
 			</div>
 			<div class="poster-slider">
-				<div class="year-sort" onclick="sortClick()"></div>
-				<div class="cards">
+				<div class="year-sort-container">
+				<div class="year-sort-button" onclick="sortClick()"></div>
+				<div class="year-sort-text"><p>Sort by Year</p></div>
 				</div>
-				<div class="buttons">
-					<img src="images/prev-button.png" id="previous" onclick="previousCard()"></img>
-					<img src="images/next-button.png" id="next" onclick="nextCard()"></img>
+				<div class="card-container">
+					<img src="images/prev-button.png" id="previous" class="buttons" onclick="previousCard()"></img>
+					<div class="cards"></div>
+					<img src="images/next-button.png" id="next" class="buttons" onclick="nextCard()"></img>
 				</div>
 			</div>
 		</div>
