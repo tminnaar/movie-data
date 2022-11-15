@@ -220,6 +220,9 @@ function toggleReview(form) {
 
 function onFocusChange() {
 	const reviewText = document.getElementById("reviewText");
+	const focusedMovie = Object.keys(ordered)[focusedIndex];
+	const button = document.getElementById("reviewButton");
+
 	cardContainer.scrollLeft = 500 * focusedIndex;
 	title.textContent = Object.keys(ordered)[focusedIndex];
 	plot.textContent = Object.values(ordered)[focusedIndex].plot;
@@ -230,4 +233,10 @@ function onFocusChange() {
 	reviewText.textContent = Object.values(ordered)[focusedIndex].review;
 	body.style.backgroundColor = Object.values(ordered)[focusedIndex].bgColor;
 	reviewButton.style.color = Object.values(ordered)[focusedIndex].bgColor;
+
+	if (movieData[focusedMovie].review === "") {
+		button.value = "Add Review";
+	} else {
+		button.value = "Edit Review";
+	}
 }
