@@ -26,8 +26,7 @@ let movieData = {
 		runtime: 147,
 		rating: 7.9,
 		src: "images/fantastic-mr-fox.jpg",
-		review:
-			"Fantastic Mr. Fox is a delightfully funny feast for the eyes with multi-generational appeal -- and it shows Wes Anderson has a knack for animation.",
+		review: "",
 		bgColor: "#ec2027",
 	},
 	"The Grand Budapest Hotel": {
@@ -51,8 +50,8 @@ const plot = document.getElementById("plot");
 const year = document.getElementById("year");
 const runtime = document.getElementById("runtime");
 const rating = document.getElementById("rating");
-const reviewText = document.getElementById("reviewText");
 const body = document.getElementById("body");
+const reviewButton = document.getElementById("reviewButton");
 
 let focusedIndex = 0;
 
@@ -214,13 +213,13 @@ function toggleReview(form) {
 		if (movieData[focusedMovie].review === "") {
 			button.value = "Add Review";
 		} else {
-			button.value = "Edit";
+			button.value = "Edit Review";
 		}
 	}
-	console.log(document.getElementById("reviewInput"));
 }
 
 function onFocusChange() {
+	const reviewText = document.getElementById("reviewText");
 	cardContainer.scrollLeft = 500 * focusedIndex;
 	title.textContent = Object.keys(ordered)[focusedIndex];
 	plot.textContent = Object.values(ordered)[focusedIndex].plot;
@@ -230,4 +229,5 @@ function onFocusChange() {
 	rating.textContent = Object.values(ordered)[focusedIndex].rating;
 	reviewText.textContent = Object.values(ordered)[focusedIndex].review;
 	body.style.backgroundColor = Object.values(ordered)[focusedIndex].bgColor;
+	reviewButton.style.color = Object.values(ordered)[focusedIndex].bgColor;
 }
