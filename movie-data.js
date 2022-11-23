@@ -42,7 +42,7 @@ let movieData = {
 };
 
 const cardContainer = document.querySelector(".cards");
-const yearSort = document.querySelector(".year-sort-button");
+const yearSort = document.querySelector(".alpha-sort-button");
 
 const title = document.getElementById("film-title");
 const cast = document.getElementById("cast");

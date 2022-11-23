@@ -9,12 +9,12 @@ body {
 
 .container {
 	position: relative;
-	top: 150px;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	padding: 200px;
+	padding: 150px;
+	padding-top: 100px;
 	gap: 100px;
 }
 
@@ -22,7 +22,9 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 40vw;
+	flex-grow: 0;
+	flex-shrink: 0;
+	width: 35vw;
 	height: 264px;
 	padding: 30px;
 }
@@ -52,7 +54,7 @@ body {
 	top: auto;
 	left: auto;
 	display: block;
-	width: 25vw;
+	min-height: 125px;
 	font-size: 25px;
 	padding: 30px;
 }
@@ -96,6 +98,7 @@ body {
 #reviewForm {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 }
 
 #reviewForm textarea {
@@ -106,7 +109,7 @@ body {
 	padding: 20px;
 	background-color: rgba(255, 255, 255, 0.3);
 	color: white;
-	font-size: 25px;
+	font-size: 30px;
 	resize: none;
 	border-style: none;
 	border-color: Transparent;
@@ -131,12 +134,12 @@ textarea {
 .poster-slider {
 	display: flex;
 	flex-direction: column;
-	width: 900px;
+	width: 40vw;
 	gap: 30px;
 	overflow: hidden;
 }
 
-.year-sort-container {
+.alpha-sort-container {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -146,32 +149,31 @@ textarea {
 	left: 70px;
 	height: 50px;
 	width: 290px;
-	font-size: 30px;
 	font-weight: 600;
 	border-radius: 15px;
 	border-color: rgb(0, 0, 0);
 	background-color: rgb(0, 0, 0);
 	gap: 20px;
-}
-
-.year-sort-button {
-	display: flex;
-	flex-direction: row;
-	height: 60px;
-	width: 60px;
-	background-image: url("images/ascending.png");
-	filter: invert(1);
-	background-repeat: no-repeat;
-	background-size: 60px 60px;
 	cursor: pointer;
 }
 
-#year-sort-text {
-	font-size: 30px;
+.alpha-sort-button {
+	display: flex;
+	flex-direction: row;
+	height: 40px;
+	width: 40px;
+	background-image: url("images/ascending.png");
+	filter: invert(1);
+	background-repeat: no-repeat;
+	background-size: 40px 40px;
+}
+
+#alpha-sort-text {
+	font-size: 20px;
 	font-weight: 600;
 }
 
-.year-sort-button[ascending] {
+.alpha-sort-button[ascending] {
 	background-image: url("images/descending.png");
 	filter: invert(1);
 }
