@@ -57,7 +57,8 @@ let focusedIndex = 0;
 
 let ordered = orderKeys(movieData, false);
 onFocusChange();
-// function that takes key at each object, converts to a sroted array and returns a new object called ordered
+
+//takes key at each object, converts to an alphabetically sorted array and returns a new object called "ordered"
 //unordered is an object, reversed is a boolean
 function orderKeys(unordered, reversed) {
 	let sortedArray = Object.keys(unordered).sort();
@@ -71,6 +72,7 @@ function orderKeys(unordered, reversed) {
 	}, {});
 }
 
+//creates and a <div> with class .card, creates and <img> and sets the src to the string of the objects "src" property.
 function addCard(imageSource) {
 	const newDiv = document.createElement("div");
 	newDiv.classList.add("card");
@@ -85,8 +87,10 @@ function addCard(imageSource) {
 Object.keys(ordered).forEach((key) => {
 	addCard(ordered[key].src);
 });
+
 appendSpacer(cardContainer);
 
+//contextually changes the visibility of the navigation buttons. previous button is hidden at first index, next button is hidden at last index-1(to account for the spacer).
 function toggleNavVisibility() {
 	const nextButton = document.getElementById("next");
 	const prevButton = document.getElementById("previous");
@@ -103,10 +107,11 @@ function toggleNavVisibility() {
 	}
 }
 
+//alert that pops up when navigating or sorting if text input is still active and hasn't been submitted. if cancelled, text input remains active. if accepted, review is reverted to previous value and saved.
 function discardChanges() {
 	const focusedMovie = Object.keys(ordered)[focusedIndex];
 	const form = document.getElementById("reviewForm");
-
+	//reverts text to focusedMovies "review" string.
 	if (window.confirm("Do you want to discard your changes?")) {
 		const reviewInput = document.getElementById("reviewInput");
 		reviewInput.value = movieData[focusedMovie].review;
@@ -119,6 +124,7 @@ function discardChanges() {
 	}
 }
 
+//sorts the keys in ascending or descending alphabetically, displays the cards in the slider accordingly. resets index to 0.
 function sortClick() {
 	if (document.getElementById("reviewForm").dataset.mode === "edit" && !discardChanges()) {
 		return false;
@@ -145,6 +151,7 @@ function sortClick() {
 	toggleNavVisibility();
 }
 
+//scrolls backwards through slider, interates through order index. onFocusChange() updates film poster image and information.
 function previousCard() {
 	if (document.getElementById("reviewForm").dataset.mode === "edit" && !discardChanges()) {
 		return false;
@@ -158,6 +165,7 @@ function previousCard() {
 	toggleNavVisibility();
 }
 
+//scrolls forwards through slider, interates through order index. onFocusChange() updates film poster image and information.
 function nextCard() {
 	if (document.getElementById("reviewForm").dataset.mode === "edit" && !discardChanges()) {
 		return false;
@@ -179,37 +187,46 @@ function appendSpacer(container) {
 	container.appendChild(spacerDiv);
 }
 
+//stores review form text input value to focusedIndex's "review" property as a string and displays it at the bottom of the info panel.
 function toggleReview(form) {
 	const focusedMovie = Object.keys(ordered)[focusedIndex];
 	const button = document.getElementById("reviewButton");
 
 	if (form.dataset.mode === "display") {
+		//creates text input with a value of focusedMovie's "review" property value (whether empty or not).
 		const reviewInput = document.createElement("textarea");
 		reviewInput.setAttribute("id", "reviewInput");
 		reviewInput.value = movieData[focusedMovie].review;
 
 		reviewInput.setAttribute("maxlength", "200");
 
+		//removes review <p>.
 		document.getElementById("reviewText").remove();
 
 		form.insertBefore(reviewInput, button);
 
+		//changes form state to "edit" and button text to "Submit"
 		form.dataset.mode = "edit";
 		button.value = "Submit";
 	} else {
+		//sets focusedMovie's review property value to the value of the text input.
 		const reviewInput = document.getElementById("reviewInput");
 		movieData[focusedMovie].review = reviewInput.value;
 
+		// removes the form text input
 		reviewInput.remove();
 
+		//creates a new <p> with textContent of focusedMovie's "review" property value.
 		const reviewText = document.createElement("p");
 		reviewText.setAttribute("id", "reviewText");
 		reviewText.textContent = movieData[focusedMovie].review;
 
 		form.insertBefore(reviewText, button);
 
+		//changes form state to "display"
 		form.dataset.mode = "display";
 
+		//contextually changes review button text depending on whether stored "review" value is empty or not.
 		if (movieData[focusedMovie].review === "") {
 			button.value = "Add Review";
 		} else {
@@ -218,6 +235,7 @@ function toggleReview(form) {
 	}
 }
 
+//triggered on navigation and sort. sets the focused card's image, information and body's background colour at current index to that of relevant film within the current order.
 function onFocusChange() {
 	const reviewText = document.getElementById("reviewText");
 	const focusedMovie = Object.keys(ordered)[focusedIndex];
@@ -234,6 +252,7 @@ function onFocusChange() {
 	body.style.backgroundColor = Object.values(ordered)[focusedIndex].bgColor;
 	reviewButton.style.color = Object.values(ordered)[focusedIndex].bgColor;
 
+	//contextually changes review button text depending on whether stored "review" value is empty or not.
 	if (movieData[focusedMovie].review === "") {
 		button.value = "Add Review";
 	} else {
