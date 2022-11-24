@@ -84,6 +84,7 @@ function addCard(imageSource) {
 	cardContainer.appendChild(newDiv);
 }
 
+//iterates through the ordered films and creates a card with and image for each.
 Object.keys(ordered).forEach((key) => {
 	addCard(ordered[key].src);
 });

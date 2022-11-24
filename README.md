@@ -1,1 +1,5 @@
-# movie-data
+# Movie Data
+
+A simple interface using JavaScript objects to display film posters in a slider with relevant information such as plot, cast, rating etc. displayed on the left. The films are able to be sorted Alphabetically using a button above the slider as well as navigated through using arrows underneath. The user can add or edit their own review which is then stored within the key for each film and is persistent when navigating and sorting.
+
+Using Object.keys.sort I mutated the movie data object to return an array of the keys to establish an index, which could then be used to sort alphabetically and navigate between cards. This allowed me to manipulate text and image elements when navigating or sorting. Learning about .setAttribute allowed me to push image source links from object property values into the element as well as alter the background-colour in the body. dataset.mode allowed me to create 2 different states for editing or displaying the reviews and window.confirm helped solved the unexpected issue reviews being saved when navigating or sorting in edit mode.
