@@ -10,7 +10,7 @@ let movieData = {
 		bgColor: "#883025",
 	},
 	"The Royal Tenenbaums": {
-		plot: "The eccentric members of a dysfunctional family reluctantly gather under the same roof for various reasons",
+		plot: "The eccentric members of a dysfunctional family reluctantly gather under the same roof for various reasons.",
 		rating: 7.6,
 		year: 2001,
 		cast: ["Gene Hackman", "Gwnyeth Paltrow", "Anjelica Huston"],
